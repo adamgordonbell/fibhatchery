@@ -1,0 +1,28 @@
+#! /bin/bash
+# shellcheck disable=SC2207 # Arrays are a pain in bash 3
+
+echo "functions assume they are run from repo root"
+echo "run \"list\" for a list of helpers"
+
+INIT_LOCATION="$0"
+
+list(){
+    ./util/bash_includes/list.awk "$INIT_LOCATION"
+}
+
+## External
+
+run() { # Feedback
+   poetry run python -m files_to_prompt "$@"
+}
+
+check_code() {
+    poetry run ruff . --fix
+    poetry run mypy --disallow-untyped-defs .
+    poetry run vulture .
+}
+
+run_local() { # Start Docker Image
+    docker build -t fibhatchery .
+    docker run -d -p 8080:8080 fibhatchery
+}

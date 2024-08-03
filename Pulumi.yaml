@@ -1,0 +1,3 @@
+name: fibfactory
+runtime: python
+description: A Pulumi program for deploying ephemeral Fibonacci environments using AWS App Runner

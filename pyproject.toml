@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "fibfactory"
+version = "0.1.0"
+description = "A project that demonstrates the use of Pulumi Automation API to create and manage ephemeral Fibonacci service environments using AWS App Runner"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "^2.0.1"
+pulumi = "*"
+pulumi-aws = "*"
+boto3 = "*"
+pulumi-docker = "^4.5.5"
+
+[tool.ruff]
+# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
+#select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.mypy]
+ignore_missing_imports = true
