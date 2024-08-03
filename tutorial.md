@@ -1,6 +1,10 @@
 ---
 title: "Ephemeral Environments with Pulumi Automation API"
+author: Adam Gordon Bell
 ---
+
+# Ephemeral Environments with Pulumi Automation API
+
 > An ephemeral environment is a short-lived, isolated deployment of an application and its supporting infrastructure. Ephemeral environments provide robust, on-demand platforms for running tests, previewing features, and collaborating asynchronously across teams.
 
 For me, ephemeral environments have always been the holy grail of software development. Imagine working on a service that needs to talk to S3, send messages to a Kafka cluster, be fronted by an API gateway, and be called by a frontend JS app. Interacting on this locally and testing that nothing has broken at the service boundaries becomes a big challenge.
@@ -284,3 +288,5 @@ And the benefits don't just stop at ease-of-use. How much time has been spent ch
 Programmatically created and destroyed ephemeral environments are work to set up, but then—you get consistency; you get isolation; you can collaborate by sharing a link to your whole stack for a coworker to test; you can tear them down when not in use; you get faster feedback loops; and you can scale your environments as you scale your team. 
 
 It feels like ephemeral environment's time has finally come.
+
+[Solution Source](https://github.com/adamgordonbell/fibhatchery/blob/main/fibfactory.py)
