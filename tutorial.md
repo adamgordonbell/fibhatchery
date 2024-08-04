@@ -11,7 +11,7 @@ For me, ephemeral environments have always been the holy grail of software devel
 
 I want a way to quickly test my changes end to end, but all solutions to that have always left me wanting. I could point everything to a staging environment, which is a real pain for Kafka messages. I could try to run everything locally or make sure I have integration tests that test across service boundaries and depend on a slow CI/CD cycle to catch any issues. 
 
-But if I could spin a copy of the whole world from scratch, from my branch – an environemtn that just contained my changes – and then destroy it at the end, I would be so happy.
+But if I could spin a copy of the whole world from scratch, from my branch – an environment that just contained my changes – and then destroy it at the end, I would be so happy.
 
 Thankfully, doing this with Pulumi and the Pulumi automation API is possible. If all the infrastructure and services are described as a Pulumi program, I can automatically set up and tear down an environment. Then, if I use the Pulumi automation API, I can have a script in my language of choice in my repo that sets and tears down an ephemeral version of my environment as needed.
 
@@ -138,17 +138,17 @@ Now, let's start hooking this up with automation.
 
 ## Automation API:
 
-For today's purposes, I will make things a bit more manual. You will create an environment like this:
+For now, the process of naming an environment will be manual. You will create an environment like this:
 
 ```
 python fibfactory.py --env-id test1 create
 ```
-And that will create our ephemeral environment, which is in Pulumi terms stack named `fib-factory-test1`. I'll also add the ability to list all ephemeral environments for this repo and destroy them by name.
+And that will create our ephemeral environment, which is in Pulumi terms stack named `fib-factory-test1`.
 
 
 ### Create environment
 
-Our slightly simplified create looks like this. We import the automation module, create our stack name, and then our stack:
+Our, shown here slightly simplified, `create` looks like this:
 
 ```
 from pulumi import automation as auto
@@ -163,6 +163,8 @@ def create_env(env_id: str) -> None:
                                             program=pulumi_program)
 
 ```
+
+We import the automation module, create our stack name, and then our stack. 
 
 An important detail is `program=pulumi_program.` `pulumi_program` is our function above that builds our environment. We pass it to our stack, and, spoiler alert, it will be executed when we call `stack.up`.
 
